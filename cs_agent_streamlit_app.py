@@ -15,7 +15,7 @@ load_dotenv()
 # Gemini Configuration
 api_key = os.getenv('GOOGLE_API_KEY')
 if not api_key:
-    st.error("GOOGLE_API_KEY não encontrada. Por favor, configure a chave API nas configurações do Streamlit Cloud.")
+    st.error("GOOGLE_API_KEY not found. Please configure the API key in the Streamlit Cloud settings.")
     st.stop()
 
 genai.configure(api_key=api_key)
@@ -24,13 +24,13 @@ retry_policy = {"retry": retry.Retry(predicate=retry.if_transient_error)}
 ## -- Database connection -- ##
 def init_db_connection():
     try:
-        print("Tentando conectar ao banco de dados...")
+        print("Trying to connect to the database...")
         db_conn = sqlite3.connect('my_database.db')
-        print("Conexão com banco de dados estabelecida com sucesso!")
+        print("Database connection established successfully!")
         return db_conn
     except Exception as e:
-        print(f"Erro ao conectar ao banco de dados: {e}")
-        st.error(f"Erro de conexão com o banco: {e}")
+        print(f"Error connecting to the database: {e}")
+        st.error(f"Database connection error: {e}")
         return None
 
 db_conn = init_db_connection()
@@ -76,7 +76,7 @@ def execute_query(sql: str) -> list[list[str]]:
     print(f' - SQL Query before: {sql}')
     
     if db_conn is None:
-        print("Erro: Conexão com banco de dados não estabelecida")
+        print("Error: Database connection not established")
         return []
         
     # Remove escaped quotes
@@ -95,7 +95,7 @@ def execute_query(sql: str) -> list[list[str]]:
         return results
     except sqlite3.Error as e:
         print(f"Database error: {e}")
-        st.error(f"Erro na query: {e}")
+        st.error(f"Query error: {e}")
         return []
         
 ## -- Model configuration -- ##
@@ -207,20 +207,20 @@ def main():
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 try:
-                    print("Enviando mensagem para o modelo...")
+                    print("Sending message to the model...")
                     response = chat.send_message(prompt, request_options=retry_policy)
-                    print("Resposta recebida do modelo")
+                    print("Response received from the model")
                     if response.text:
-                        print(f"Resposta: {response.text}")
+                        print(f"Response: {response.text}")
                         st.session_state.messages.append({"role": "assistant", "content": response.text})
                         st.markdown(response.text)
                     else:
-                        print("Resposta vazia do modelo")
+                        print("Empty response from the model")
                         error_message = "I apologize, but I couldn't generate a proper response. Please try rephrasing your question."
                         st.session_state.messages.append({"role": "assistant", "content": error_message})
                         st.error(error_message)
                 except Exception as e:
-                    print(f"Erro detalhado: {str(e)}")
+                    print(f"Detailed error: {str(e)}")
                     error_message = f"An error occurred: {str(e)}"
                     st.session_state.messages.append({"role": "assistant", "content": error_message})
                     st.error(error_message)
@@ -234,7 +234,7 @@ def main():
         
         # Add clear chat button
         if st.button("🗑️ Clear Chat", key="clear_chat_sidebar", use_container_width=True):
-            print("Botão clicado!")  # Debug print
+            print("Button clicked!")  # Debug print
             st.session_state.messages = []
             st.rerun()       
         
