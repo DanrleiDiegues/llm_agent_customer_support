@@ -228,15 +228,16 @@ def main():
     # Sidebar for examples
     # Enhanced sidebar
     with st.sidebar:
+                
+        st.title("🤖 Virtual Assistant - Computer Store")
+        st.write("Ask me anything about the computer store!")
         
         # Add clear chat button
-        if st.button("🗑️ Clear Chat", key="clear_chat_sidebar", use_container_width=True):
-            print("Botão clicado!")  # Debug print
+        clear_chat = st.button("🗑️ Clear Chat", key="clear_chat_button", use_container_width=True)
+        if clear_chat:
             st.session_state.messages = []
-            st.rerun()
-            
-        st.title("🤖 Virtual Assistant - Computer Store")
-        st.write("Ask me anything about the computer store!")       
+            st.session_state.clear_chat = True
+            st.rerun()     
         
         st.divider()
         
