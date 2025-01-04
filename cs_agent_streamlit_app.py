@@ -179,11 +179,6 @@ example_categories = {
 ## Main interface
 def main():
     st.title("🤖 Virtual Assistant - Computer Store")
-    
-    # Add clear chat button in the main area
-    if st.button("🗑️ Clear Chat"):
-        st.session_state.messages = []
-        st.rerun()
 
     model = init_model()
     
@@ -235,6 +230,11 @@ def main():
     with st.sidebar:
         st.title("🤖 Virtual Assistant - Computer Store")
         st.write("Ask me anything about the computer store!")
+        
+        # Add clear chat button
+        if st.button("🗑️ Clear Chat", key="clear_chat_sidebar", use_container_width=True):
+            st.session_state.messages = []
+            st.rerun()
         
         st.divider()
         
