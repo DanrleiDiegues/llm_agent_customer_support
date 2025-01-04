@@ -106,20 +106,20 @@ def init_model():
     available. 
 
     DATABASE INFORMATION:
-    - Table name: produtos_tec
-    - Columns: id, nome, descricao, preco, estoque, categoria
+    - Table name: tech_products
+    - Columns: id, name, description, price, stock, category
 
     IMPORTANT SQL RULES:
     - Always use single quotes (') for string literals
     - DO NOT escape quotes in the SQL query
-    - For category searches use: WHERE LOWER(categoria) = 'mouse'
-    - For partial matches use: WHERE LOWER(nome) LIKE '%mouse%'
+    - For category searches use: WHERE LOWER(category) = 'mouse'
+    - For partial matches use: WHERE LOWER(name) LIKE '%mouse%'
     - Use proper SQLite syntax
 
     EXAMPLE QUERIES:
-    - Correct: SELECT * FROM produtos_tec WHERE LOWER(categoria) = 'mouse'
-    - Correct: SELECT * FROM produtos_tec WHERE preco < 1000
-    - Correct: SELECT * FROM produtos_tec WHERE LOWER(nome) LIKE '%mouse%'
+    - Correct: SELECT * FROM tech_products WHERE LOWER(category) = 'mouse'
+    - Correct: SELECT * FROM tech_products WHERE price < 1000
+    - Correct: SELECT * FROM tech_products WHERE LOWER(name) LIKE '%mouse%'
 
     When responding to users:
     1. Generate appropriate SQL queries using the rules above
