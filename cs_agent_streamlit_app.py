@@ -176,10 +176,6 @@ example_categories = {
     ]
 }
 
-def clear_chat():
-    st.session_state.messages = []
-    st.rerun()
-
 ## Main interface
 def main():
     st.title("🤖 Virtual Assistant - Computer Store")
@@ -232,21 +228,15 @@ def main():
     # Sidebar for examples
     # Enhanced sidebar
     with st.sidebar:
-        if 'messages' not in st.session_state:
-            st.session_state.messages = []
-
-        st.button("🗑️ Clear Chat", key="clear_chat_btn", on_click=clear_chat)    
-    
-    with st.sidebar: 
+                
         st.title("🤖 Virtual Assistant - Computer Store")
         st.write("Ask me anything about the computer store!")
         
         # Add clear chat button
-        clear_chat = st.button("🗑️ Clear Chat", key="clear_chat_button", use_container_width=True)
-        if clear_chat:
+        if st.button("🗑️ Clear Chat", key="clear_chat_sidebar", use_container_width=True):
+            print("Botão clicado!")  # Debug print
             st.session_state.messages = []
-            st.session_state.clear_chat = True
-            st.rerun()     
+            st.rerun()       
         
         st.divider()
         
