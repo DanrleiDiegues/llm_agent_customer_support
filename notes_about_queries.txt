@@ -1,0 +1,60 @@
+How Can Generative AI Understand the Values Stored in a Table Within a Database? (Technically Speaking)
+
+1. Schema Context
+
+First, we provide the AI with the schema (structure) of the table.
+This includes column names, data types, and relationships.
+This context is usually passed as part of the prompt.
+Example:
+Table: products
+Columns:
+- id (INTEGER)
+- name (TEXT)
+- price (DECIMAL)
+- category (TEXT)
+
+Sample data:
+id | name            | price   | category
+1  | Dell Notebook   | 3500.00 | Computers
+2  | USB Mouse       | 50.00   | Peripherals
+
+2. Data Examples
+
+Providing example data helps the AI understand the structure and semantics of the content.
+For instance, the AI can infer what "price" represents or what "category" might indicate.
+
+3. Natural Language Processing (NLP)
+
+The AI uses NLP techniques to:
+Understand the semantic structure of the data.
+Map words to concepts.
+Relate similar terms (e.g., "price" and "value").
+
+4. Embeddings and Vectorization
+
+Data is converted into numerical representations (vectors).
+This allows the AI to:
+Identify patterns in the data.
+Establish semantic relationships.
+Perform comparisons and analyses.
+
+5. Query Generation
+
+Based on its understanding of the data, the AI can:
+Generate appropriate SQL queries.
+Filter relevant information.
+Answer questions about the data effectively.
+
+6. Feedback Loop
+
+The database responses are used to:
+- Refine the AI’s understanding.
+- Validate assumptions.
+- Improve the accuracy of future responses.
+
+Key Considerations for Optimal AI Performance
+- Context Quality: The better the schema and examples provided, the more accurately the AI will understand the data.
+- Data Structure: Well-organized data ensures better mapping and querying.
+- Model Training: The AI's training impacts its ability to interpret and respond.
+Question Clarity: Precise questions yield better results.
+This process highlights how generative AI bridges natural language inputs with structured database outputs to deliver meaningful insights.
