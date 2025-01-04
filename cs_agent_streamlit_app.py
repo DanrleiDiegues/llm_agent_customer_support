@@ -13,7 +13,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Gemini Configuration
-genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
+api_key = os.getenv('GOOGLE_API_KEY')
+if not api_key:
+    st.error("GOOGLE_API_KEY não encontrada. Por favor, configure a chave API nas configurações do Streamlit Cloud.")
+    st.stop()
+
+genai.configure(api_key=api_key)
 retry_policy = {"retry": retry.Retry(predicate=retry.if_transient_error)}
 
 ## -- Database connection -- ##
