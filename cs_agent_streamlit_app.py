@@ -232,6 +232,10 @@ def main():
         st.write("Ask me anything about the computer store!")
         st.divider()
         
+        if st.button("Clear conversation"):
+            st.session_state.messages = []
+            st.rerun()
+        
         st.subheader("📝 Example Questions")
         # Create expandable sections for each category
         for category, questions in example_categories.items():
