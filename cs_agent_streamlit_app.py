@@ -21,6 +21,13 @@ if not api_key:
 genai.configure(api_key=api_key)
 retry_policy = {"retry": retry.Retry(predicate=retry.if_transient_error)}
 
+## -- Streamlit page configuration -- ##
+st.set_page_config(
+    page_title="CS - Computer Store Assistant",
+    page_icon="💻",
+    layout="wide"
+)
+
 ## -- Database connection -- ##
 def init_db_connection():
     try:
@@ -137,12 +144,6 @@ def init_model():
     
     return model
 
-## -- Streamlit page configuration -- ##
-st.set_page_config(
-    page_title="Computer Store Assistant",
-    page_icon="💻",
-    layout="wide"
-)
 
 # Add examples of questions before the chat input
 example_categories = {
